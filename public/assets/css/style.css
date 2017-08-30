@@ -1,0 +1,15 @@
+* {
+    text-align: center;
+    background-color: #a84f4f;
+
+}
+
+.btn {
+    background-color: white;
+    color: black;
+
+}
+
+.btn:hover {
+    background-color: grey;
+}

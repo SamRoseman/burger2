@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row">
+        <div id="headline"class="col m12">
+            <h1>Burgers!</h1>
+        </div>
+
+        <div class="col s12 m6">
+
+            <h4>Burgers that are not eaten!</h4>
+                <ul>
+                    {{#each burgers}}
+                        {{#unless this.eaten}}
+                            <li>
+                                {{this.burger}}
+
+                                <form action="/{{this.id}}?_method=PUT" method="POST">
+                                    <input type="hidden" name="eaten" value="true">
+                                    <button class="waves-effect waves-light btn" type="submit">Eat!</button>
+                                </form>
+
+                                {{> burgers/delete-burger}}
+                            </li>
+                        {{/unless}}
+                    {{/each}}
+                </ul>
+        </div>
+
+        <div class="col m6">
+            <h4>Burgers that are eaten!</h4>
+
+            <ul>
+                {{#each burgers}}
+                    {{#if this.eaten}}
+                        <li>
+                            {{this.burger}} {{> burgers/delete-burger}}
+                        </li>
+                    {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<h2>Add a Burger</h2>
+<form class="create-update-form" action="/" method="POST">
+
+    <div class="form-group">
+        <label for="newburger">Burger Name:</label>
+        <input type="text" id="newburger" name="burger">
+    </div>
+
+    <button class="waves-effect waves-light btn" type="submit">Add Burger</button>
+</form>
